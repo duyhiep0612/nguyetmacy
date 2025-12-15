@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyệt Macy - Professional Trainer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome cho Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pastel-pink': '#ffe4e6',
+                        'pastel-peach': '#fdf2f8',
+                        'accent-dark': '#1a1a1a',
+                        'soft-gray': '#4b5563',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        blob: "blob 7s infinite",
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            "0%": { transform: "translate(0px, 0px) scale(1)" },
+                            "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+                            "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+                            "100%": { transform: "translate(0px, 0px) scale(1)" },
+                        },
+                        fadeInUp: {
+                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "100%": { opacity: "1", transform: "translateY(0)" },
+                        }
+                    },
+                }
+            }
+        }
+
+        // Script xử lý chuyển tab
+        function showSection(sectionId) {
+            // Ẩn tất cả các section
+            const sections = ['about', 'resume', 'projects', 'contact'];
+            sections.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+
+            // Hiện section được chọn
+            const selected = document.getElementById(sectionId);
+            selected.classList.remove('hidden');
+            
+            // Reset animation bằng cách remove và add lại class (hack nhỏ để animation chạy lại)
+            selected.classList.remove('animate-fade-in-up');
+            void selected.offsetWidth; // trigger reflow
+            selected.classList.add('animate-fade-in-up');
+
+            // Cập nhật trạng thái active cho menu (tùy chọn UI)
+            document.querySelectorAll('nav a').forEach(el => {
+                el.classList.remove('text-pink-600');
+                el.querySelector('span').classList.remove('w-full');
+                el.querySelector('span').classList.add('w-0');
+            });
+            
+            // Tìm thẻ a tương ứng để highlight (đơn giản hóa bằng cách check text content hoặc ID nếu có)
+            // Ở đây ta giữ đơn giản là hiển thị nội dung.
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .animation-delay-2000 { animation-delay: 2s; }
+        .animation-delay-4000 { animation-delay: 4s; }
+        
+        /* Tùy chỉnh thanh cuộn cho đẹp hơn */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fff0f3; }
+        ::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f472b6; }
+    </style>
+</head>
+<body class="bg-[#fff0f3] text-gray-800 font-sans min-h-screen flex flex-col justify-between overflow-x-hidden selection:bg-pink-200 selection:text-pink-900">
+
+    <!-- Header / Navbar -->
+    <header class="w-full px-6 md:px-12 py-6 flex justify-between items-center fixed top-0 left-0 z-50 bg-[#fff0f3]/80 backdrop-blur-md transition-all duration-300">
+        <div class="flex items-center gap-3 cursor-pointer group" onclick="showSection('about')">
+            <div class="w-4 h-4 bg-pink-500 rounded-sm group-hover:rotate-45 transition-transform duration-300"></div> 
+            <span class="text-xl font-bold font-serif tracking-wide text-gray-900">Nguyệt Macy <span class="hidden sm:inline font-light text-sm font-sans ml-2 text-gray-500 uppercase tracking-widest">/ Professional Trainer</span></span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex gap-8 text-xs font-semibold tracking-[0.15em] text-gray-500">
+            <a href="javascript:void(0)" onclick="showSection('about')" class="hover:text-pink-600 transition-colors duration-300 relative group">
+                GIỚI THIỆU
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('resume')" class="hover:text-pink-600 transition-colors duration-300 relative group">
+                HỒ SƠ
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('projects')" class="hover:text-pink-600 transition-colors duration-300 relative group">
+                DỰ ÁN
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="javascript:void(0)" onclick="showSection('contact')" class="hover:text-pink-600 transition-colors duration-300 relative group">
+                LIÊN HỆ
+                <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+        </nav>
+
+        <!-- Mobile Menu Icon -->
+        <button class="md:hidden text-gray-800 hover:text-pink-600 transition">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="flex-grow flex flex-col md:flex-row w-full mt-20 md:mt-0">
+        
+        <!-- Left Column: Image & Card (Cố định) -->
+        <section class="relative w-full md:w-[45%] min-h-[500px] md:min-h-screen flex items-center justify-center overflow-hidden">
+            <!-- Background Gradient Layer -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#ffe4e6] via-[#fff0f3] to-[#e0f2fe] w-full h-full z-0"></div>
+            
+            <!-- Animated Blobs -->
+            <div class="absolute top-1/4 left-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob"></div>
+            <div class="absolute top-1/4 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-8 left-20 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-4000"></div>
+
+            <!-- Profile Card -->
+            <div class="relative z-10 glass-card shadow-2xl w-[340px] text-center transform md:translate-x-12 transition-transform duration-500 hover:scale-[1.01]">
+                <div class="bg-[#fcf6f5]/90 p-10 flex flex-col items-center">
+                    <div class="w-44 h-44 rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg relative group">
+                        <!-- Cập nhật ảnh của bạn ở đây -->
+                        <img src="https://duyhiep0612.wordpress.com/wp-content/uploads/2025/12/img_7857.jpg" 
+                             alt="Nguyệt Macy" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    
+                    <h2 class="text-4xl font-bold font-serif text-gray-900 leading-tight">Nguyệt<br>Macy</h2>
+                    
+                    <div class="w-12 h-1 bg-blue-500 my-6"></div>
+                    
+                    <!-- Title Tiếng Anh -->
+                    <p class="text-xs tracking-[0.25em] uppercase text-gray-500 font-semibold">Professional Trainer</p>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="bg-white py-5 px-6 flex justify-center gap-8 border-t border-gray-100">
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors transform hover:-translate-y-1"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-blue-400 transition-colors transform hover:-translate-y-1"><i class="fab fa-twitter text-lg"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-blue-700 transition-colors transform hover:-translate-y-1"><i class="fab fa-linkedin-in text-lg"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-pink-600 transition-colors transform hover:-translate-y-1"><i class="fab fa-instagram text-lg"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Column: Content (Thay đổi động) -->
+        <section class="w-full md:w-[55%] flex flex-col justify-center px-8 md:px-24 py-12 md:py-0 bg-[#fff0f3] min-h-[600px]">
+            
+            <!-- SECTION 1: ABOUT ME (Mặc định hiển thị) -->
+            <div id="about" class="animate-fade-in-up">
+                <h1 class="text-6xl md:text-7xl font-bold font-serif mb-6 text-gray-900 leading-none">Xin chào</h1>
+                
+                <h3 class="text-xl md:text-2xl font-medium mb-8 text-gray-600 flex items-center gap-3">
+                    Tôi là Nguyệt, người truyền cảm hứng & đào tạo
+                </h3>
+                
+                <div class="flex flex-wrap gap-4 mb-12">
+                    <button onclick="showSection('resume')" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-xs tracking-widest shadow-lg shadow-blue-200 transition-all transform hover:-translate-y-0.5 hover:shadow-xl">
+                        XEM HỒ SƠ
+                    </button>
+                    
+                    <button onclick="showSection('projects')" class="px-8 py-3 bg-white border border-gray-200 hover:border-gray-900 text-gray-900 rounded-full font-semibold text-xs tracking-widest shadow-sm transition-all transform hover:-translate-y-0.5">
+                        DỰ ÁN ĐÃ LÀM
+                    </button>
+                </div>
+
+                <div class="space-y-6 text-gray-600 leading-relaxed max-w-lg text-sm md:text-base font-light">
+                    <p>Chào mừng bạn đến với không gian của tôi. Tôi là Nguyệt Macy, một Chuyên gia đào tạo với niềm đam mê sâu sắc trong việc khai phá tiềm năng con người. Với kinh nghiệm thực chiến và tư duy đổi mới, tôi giúp các cá nhân và doanh nghiệp nâng tầm năng lực thông qua các chương trình đào tạo bài bản.</p>
+                    <p>Đây là nơi tôi chia sẻ hành trình sự nghiệp, các dự án tâm huyết và những giá trị tôi theo đuổi. Hãy cùng nhau kiến tạo sự phát triển bền vững.</p>
+                    
+                    <div class="pt-4 border-t border-gray-200 mt-6">
+                         <h4 class="font-bold text-gray-900 font-serif mb-4">Kỹ năng cốt lõi:</h4>
+                         <ul class="grid grid-cols-2 gap-3 text-sm">
+                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-pink-400 rounded-full"></div>Đào tạo & Giảng dạy</li>
+                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-blue-400 rounded-full"></div>Lãnh đạo đội nhóm</li>
+                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-purple-400 rounded-full"></div>Tư duy chiến lược</li>
+                             <li class="flex items-center gap-2"><div class="w-2 h-2 bg-yellow-400 rounded-full"></div>Kỹ năng thuyết trình</li>
+                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 2: RESUME (Ẩn mặc định) -->
+            <div id="resume" class="hidden animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-8 text-gray-900">Hồ sơ năng lực</h2>
+                
+                <div class="space-y-8 max-w-lg h-[400px] overflow-y-auto pr-4 custom-scrollbar">
+                    
+                    <!-- Kinh nghiệm -->
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-600 mb-4 border-b border-blue-200 pb-2">Kinh nghiệm làm việc</h3>
+                        
+                        <div class="mb-6 relative pl-6 border-l-2 border-gray-300">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-gray-300 rounded-full"></div>
+                            <h4 class="font-bold text-gray-900">Training Manager</h4>
+                            <p class="text-sm text-gray-500 italic">2023 - Hiện tại | Công ty ABC Corp</p>
+                            <p class="text-sm text-gray-600 mt-2">Chịu trách nhiệm xây dựng và triển khai chiến lược đào tạo toàn công ty. Quản lý ngân sách đào tạo và đánh giá hiệu quả sau đào tạo.</p>
+                        </div>
+
+                        <div class="mb-6 relative pl-6 border-l-2 border-gray-300">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 bg-gray-300 rounded-full"></div>
+                            <h4 class="font-bold text-gray-900">Senior L&D Specialist</h4>
+                            <p class="text-sm text-gray-500 italic">2020 - 2023 | Tập đoàn XYZ</p>
+                            <p class="text-sm text-gray-600 mt-2">Thiết kế chương trình Onboarding cho nhân sự mới. Tổ chức các workshop kỹ năng mềm định kỳ.</p>
+                        </div>
+                    </div>
+
+                    <!-- Học vấn -->
+                    <div>
+                        <h3 class="text-xl font-bold text-pink-600 mb-4 border-b border-pink-200 pb-2">Học vấn & Chứng chỉ</h3>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-bold text-gray-900">Cử nhân Quản trị Nhân lực</h4>
+                            <p class="text-sm text-gray-500">Đại học Kinh tế Quốc dân</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-bold text-gray-900">Chứng chỉ Train the Trainer</h4>
+                            <p class="text-sm text-gray-500">Tổ chức Quốc tế A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: PROJECTS (Ẩn mặc định) -->
+            <div id="projects" class="hidden animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-8 text-gray-900">Dự án tiêu biểu</h2>
+                <p class="text-gray-600 mb-8">Một số chương trình đào tạo và dự án tôi đã thực hiện.</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
+                    <!-- Project 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Leadership 4.0</h4>
+                        <p class="text-xs text-gray-500 mb-3">Đào tạo Lãnh đạo</p>
+                        <p class="text-sm text-gray-600">Chuỗi workshop nâng cao năng lực quản lý cho cấp trung tại doanh nghiệp công nghệ.</p>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Giao tiếp Hiệu quả</h4>
+                        <p class="text-xs text-gray-500 mb-3">Kỹ năng mềm</p>
+                        <p class="text-sm text-gray-600">Xây dựng văn hóa giao tiếp cởi mở và hiệu quả trong môi trường đa văn hóa.</p>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-gray-100">
+                        <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Sales Masterclass</h4>
+                        <p class="text-xs text-gray-500 mb-3">Đào tạo Kinh doanh</p>
+                        <p class="text-sm text-gray-600">Huấn luyện kỹ năng bán hàng thực chiến cho đội ngũ Sales toàn quốc.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: CONTACT (Ẩn mặc định) -->
+            <div id="contact" class="hidden animate-fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-serif mb-6 text-gray-900">Liên hệ</h2>
+                <p class="text-gray-600 mb-8 max-w-md">Bạn quan tâm đến các chương trình đào tạo hoặc muốn hợp tác? Hãy để lại thông tin nhé.</p>
+                
+                <form class="space-y-4 max-w-md bg-white p-6 rounded-xl shadow-sm border border-pink-100">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Họ</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-pink-400 transition" placeholder="Nguyễn">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Tên</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-pink-400 transition" placeholder="Văn A">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Email</label>
+                        <input type="email" class="w-full bg-gray-50 border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-pink-400 transition" placeholder="email@vidu.com">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1 uppercase">Lời nhắn</label>
+                        <textarea class="w-full bg-gray-50 border border-gray-200 rounded px-3 py-2 text-sm focus:outline-none focus:border-pink-400 transition h-24" placeholder="Nhập nội dung..."></textarea>
+                    </div>
+
+                    <button type="button" class="w-full py-3 bg-gray-900 text-white font-bold text-xs uppercase tracking-widest hover:bg-pink-600 transition duration-300">
+                        Gửi Tin Nhắn
+                    </button>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full px-8 md:px-12 py-8 flex flex-col md:flex-row justify-between items-start md:items-end bg-[#fff0f3] text-sm border-t border-pink-100">
+        <div class="mb-8 md:mb-0">
+            <p class="text-gray-500 font-medium">© 2025 Nguyệt Macy.</p>
+            <p class="text-gray-400 text-xs mt-1">Professional Training & Coaching</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 md:gap-16 text-left md:text-right w-full md:w-auto">
+            <div>
+                <h4 class="font-bold mb-2 text-gray-900 uppercase tracking-wider text-xs">Điện thoại</h4>
+                <p class="text-gray-600 hover:text-pink-600 transition cursor-pointer">09x-xxx-xxxx</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-2 text-gray-900 uppercase tracking-wider text-xs">Email</h4>
+                <p class="text-gray-600 hover:text-pink-600 transition cursor-pointer">contact@nguyetmacy.com</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-2 text-gray-900 uppercase tracking-wider text-xs">Kết nối</h4>
+                <div class="flex gap-4 justify-start md:justify-end text-gray-400">
+                    <a href="#" class="hover:text-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-blue-400 transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-blue-700 transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-pink-600 transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
