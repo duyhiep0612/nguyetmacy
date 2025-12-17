@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyệt Macy - Professional Trainer</title>
+    <title>Nguyệt Macy - Transformation Trainer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -30,7 +30,7 @@
                     },
                     animation: {
                         blob: "blob 7s infinite",
-                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both',
                     },
                     keyframes: {
                         blob: {
@@ -40,7 +40,7 @@
                             "100%": { transform: "translate(0px, 0px) scale(1)" },
                         },
                         fadeInUp: {
-                            "0%": { opacity: "0", transform: "translateY(20px)" },
+                            "0%": { opacity: "0", transform: "translateY(30px)" },
                             "100%": { opacity: "1", transform: "translateY(0)" },
                         }
                     },
@@ -48,63 +48,150 @@
             }
         }
 
+        // --- DỮ LIỆU CHI TIẾT DẤU ẤN ---
+        const milestoneData = {
+            // Khoá học
+            'course-1': {
+                title: "6 Kỹ năng mở khoá sự nghiệp",
+                category: "Career Development",
+                image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Khóa học trang bị bộ 6 kỹ năng thiết yếu giúp nhân sự trẻ bứt phá trong môi trường công sở: Giao tiếp thấu cảm, Quản lý thời gian, Giải quyết vấn đề, Tư duy phản biện, Làm việc nhóm và Thích ứng linh hoạt. Nội dung được thiết kế dựa trên các tình huống thực tế, giúp học viên áp dụng ngay vào công việc hàng ngày."
+            },
+            'course-2': {
+                title: "Hệ thống hoá mọi kiến thức thành bài giảng",
+                category: "Instructional Design",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Dành cho các chuyên gia muốn trở thành giảng viên nội bộ. Khóa học hướng dẫn quy trình chuyển đổi kiến thức ngầm (tacit knowledge) thành tài liệu đào tạo bài bản, dễ hiểu. Học viên sẽ làm chủ các công cụ thiết kế bài giảng, cấu trúc nội dung logic và phương pháp truyền tải hấp dẫn."
+            },
+            'course-3': {
+                title: "Hướng nghiệp tự thân",
+                category: "Dành cho học sinh",
+                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Chương trình giúp học sinh THPT thấu hiểu bản thân, khám phá sở trường và định hình con đường nghề nghiệp phù hợp. Không chỉ là trắc nghiệm tính cách, khóa học cung cấp tư duy định hướng dài hạn, giúp các em tự tin ra quyết định chọn ngành, chọn nghề."
+            },
+            'course-4': {
+                title: "Cha mẹ Mentor",
+                category: "Hướng nghiệp cùng con",
+                image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Giúp phụ huynh trở thành người đồng hành sáng suốt thay vì áp đặt. Khóa học cung cấp kiến thức về thị trường lao động mới, tâm lý tuổi vị thành niên và kỹ năng coaching để cha mẹ có thể đối thoại và hỗ trợ con cái hiệu quả trong giai đoạn bước ngoặt."
+            },
+            'course-5': {
+                title: "Nghệ thuật giao tiếp",
+                category: "Dành cho tuổi teen",
+                image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Khóa học giúp các bạn trẻ tự tin thể hiện bản thân, kết nối với bạn bè và thầy cô. Tập trung vào việc xây dựng sự tự tin, kỹ năng lắng nghe, kiểm soát ngôn ngữ cơ thể và ứng xử văn minh trên mạng xã hội."
+            },
+            
+            // Chương trình đào tạo
+            'prog-1': {
+                title: "Train the Trainer",
+                category: "Đào tạo Giảng viên nội bộ",
+                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Chương trình huấn luyện chuyên sâu giúp đội ngũ quản lý và chuyên gia nội bộ trở thành những người đào tạo truyền cảm hứng. Nội dung bao gồm kỹ năng đứng lớp, điều phối hoạt động, xử lý tình huống khó và đánh giá hiệu quả đào tạo."
+            },
+            'prog-2': {
+                title: "Xây dựng tổ chức học tập xuất sắc",
+                category: "Văn hóa doanh nghiệp",
+                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Tư vấn và đồng hành cùng doanh nghiệp xây dựng văn hóa học tập chủ động (Learning Culture). Xây dựng khung năng lực, lộ trình thăng tiến gắn liền với đào tạo và các hoạt động khuyến khích chia sẻ tri thức trong tổ chức."
+            },
+            'prog-3': {
+                title: "Lập kế hoạch đào tạo theo mục tiêu kinh doanh",
+                category: "Chiến lược L&D",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Khoá học dành cho L&D Manager và HR. Hướng dẫn cách phân tích nhu cầu đào tạo (TNA) dựa trên mục tiêu chiến lược của công ty, xây dựng ngân sách, lựa chọn đối tác và đo lường ROI (Return on Investment) của hoạt động đào tạo."
+            },
+
+            // Ebook
+            'ebook-1': {
+                title: "Từ đào tạo đến thay đổi hành vi",
+                category: "Ebook - Cẩm nang L&D",
+                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Cuốn Ebook đúc kết kinh nghiệm thực chiến về việc làm sao để kiến thức sau đào tạo không bị 'trả lại thầy cô'. Tập trung vào các phương pháp Follow-up, On-the-job training và xây dựng môi trường hỗ trợ ứng dụng."
+            },
+            'ebook-2': {
+                title: "Tối ưu đào tạo cho ngành F&B",
+                category: "Ebook - Giải pháp ngành",
+                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Giải pháp đào tạo đặc thù cho ngành dịch vụ ăn uống với đặc điểm nhân sự biến động cao. Ebook cung cấp các quy trình đào tạo tinh gọn, checklist công việc chuẩn và phương pháp đào tạo tại chỗ hiệu quả."
+            },
+
+            // Đối tác
+            'part-1': {
+                title: "Tập đoàn Điện lực Việt Nam (EVN)",
+                category: "Đối tác Doanh nghiệp",
+                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Hợp tác triển khai chuỗi chương trình 'Văn hóa dịch vụ khách hàng' và 'Kỹ năng giao tiếp chuyên nghiệp' cho cán bộ nhân viên tại các đơn vị thành viên, góp phần nâng cao chất lượng phục vụ của ngành điện."
+            },
+            'part-2': {
+                title: "Ngân hàng PG Bank",
+                category: "Đối tác Tài chính",
+                image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Đồng hành trong dự án đào tạo kỹ năng bán hàng và chăm sóc khách hàng ưu tiên. Xây dựng bộ quy chuẩn giao tiếp và xử lý khiếu nại cho đội ngũ giao dịch viên toàn hệ thống."
+            },
+            'part-3': {
+                title: "TCG Land",
+                category: "Đối tác Bất động sản",
+                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Tổ chức chương trình 'Leadership Mindset' cho đội ngũ quản lý cấp trung. Tập trung vào kỹ năng quản lý đội nhóm sales, tạo động lực và duy trì năng lượng tích cực trong môi trường áp lực cao."
+            },
+            'part-4': {
+                title: "Bellsystem24",
+                category: "Đối tác BPO/Contact Center",
+                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+                description: "Đào tạo kỹ năng 'Train the Trainer' cho đội ngũ QA/Trainer nội bộ. Chuẩn hóa quy trình đào tạo nhân viên tổng đài, giúp rút ngắn thời gian hội nhập và nâng cao chất lượng cuộc gọi."
+            }
+        };
+
         // Script xử lý chuyển tab và Layout
         function showSection(sectionId) {
             const sections = ['about', 'philosophy', 'methodology', 'milestones', 'contact'];
             
-            // Ẩn tất cả section content
             sections.forEach(id => {
                 const el = document.getElementById(id);
                 if(el) el.classList.add('hidden');
             });
 
-            // Logic thay đổi Layout
             const leftSidebar = document.getElementById('left-sidebar');
             const rightContent = document.getElementById('right-content');
 
-            // Reset scroll về đầu trang mỗi khi chuyển tab
             rightContent.scrollTop = 0;
 
             if (sectionId === 'about') {
-                // Layout cho trang About: Hiện Sidebar trái, Căn giữa dọc
                 leftSidebar.classList.remove('hidden');
-                
-                // Reset classes cho About
                 rightContent.classList.remove('w-full', 'px-6', 'md:px-32', 'justify-start', 'pt-32'); 
                 rightContent.classList.add('md:w-[55%]', 'px-8', 'md:px-20', 'justify-center', 'pt-12');
             } else {
-                // Layout cho các trang khác: Ẩn Sidebar trái, Căn trên cùng (để không bị mất nội dung)
                 leftSidebar.classList.add('hidden');
-                
-                // Reset classes cho Full width pages
                 rightContent.classList.remove('md:w-[55%]', 'px-8', 'md:px-20', 'justify-center', 'pt-12');
-                rightContent.classList.add('w-full', 'px-6', 'md:px-32', 'justify-start', 'pt-32'); // pt-32 để tránh bị Header che
+                rightContent.classList.add('w-full', 'px-6', 'md:px-32', 'justify-start', 'pt-32'); 
             }
 
-            // Hiện section được chọn
             const selected = document.getElementById(sectionId);
             if(selected) {
                 selected.classList.remove('hidden');
-                selected.classList.remove('animate-fade-in-up');
-                void selected.offsetWidth; // Trigger reflow
-                selected.classList.add('animate-fade-in-up');
+                const animatedElements = selected.querySelectorAll('.animate-fade-in-up');
+                animatedElements.forEach(el => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; 
+                    el.style.animation = null; 
+                });
             }
         }
 
-        // Modal Logic
-        const projectData = {
-            1: { title: "Leadership 4.0", category: "Đào tạo Lãnh đạo", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80", description: "Chi tiết dự án..." },
-            2: { title: "Giao tiếp Hiệu quả", category: "Kỹ năng mềm", image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80", description: "Chi tiết dự án..." },
-            3: { title: "Sales Masterclass", category: "Đào tạo Kinh doanh", image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80", description: "Chi tiết dự án..." }
-        };
-
-        function openProjectModal(id) {
-            const data = projectData[id];
+        // --- HÀM MỞ MODAL CHO TẤT CẢ DẤU ẤN ---
+        function openMilestoneModal(id) {
+            const data = milestoneData[id];
             if (!data) return;
+            
             document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalCategory').innerText = data.category || "Dấu ấn nổi bật"; // Fallback category
             document.getElementById('modalImage').src = data.image;
-            document.getElementById('projectModal').classList.remove('hidden');
-            document.getElementById('projectModal').classList.add('flex');
+            document.getElementById('modalDesc').innerText = data.description;
+            
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeProjectModal() {
@@ -121,6 +208,15 @@
         }
         .animation-delay-2000 { animation-delay: 2s; }
         .animation-delay-4000 { animation-delay: 4s; }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        .delay-700 { animation-delay: 700ms; }
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #fff0f3; }
         ::-webkit-scrollbar-thumb { background: #f9a8d4; border-radius: 10px; }
@@ -132,15 +228,15 @@
     <header class="w-full px-6 md:px-12 py-6 flex justify-between items-center fixed top-0 left-0 z-50 bg-[#fff0f3]/90 backdrop-blur-md transition-all duration-300 shadow-sm border-b border-white/50">
         <div class="flex items-center gap-3 cursor-pointer group" onclick="showSection('about')">
             <div class="w-4 h-4 bg-pink-500 rounded-sm group-hover:rotate-45 transition-transform duration-300"></div> 
-            <span class="text-xl font-bold font-serif tracking-wide text-gray-900">Nguyệt Macy <span class="hidden sm:inline font-light text-sm font-sans ml-2 text-gray-500 uppercase tracking-widest">/ Professional Trainer</span></span>
+            <span class="text-xl font-bold font-serif tracking-wide text-gray-900">Nguyệt Macy <span class="hidden sm:inline font-light text-sm font-sans ml-2 text-gray-500 uppercase tracking-widest">/ Transformation Trainer</span></span>
         </div>
         
-        <nav class="hidden md:flex gap-8 text-xs font-semibold tracking-[0.15em] text-gray-500">
+        <nav class="hidden md:flex gap-8 text-xs font-semibold tracking-[0.15em] text-gray-500 font-sans">
             <a href="javascript:void(0)" onclick="showSection('about')" class="hover:text-pink-600 transition-colors duration-300">GIỚI THIỆU</a>
             <a href="javascript:void(0)" onclick="showSection('philosophy')" class="hover:text-pink-600 transition-colors duration-300">TRIẾT LÝ ĐÀO TẠO</a>
             <a href="javascript:void(0)" onclick="showSection('methodology')" class="hover:text-pink-600 transition-colors duration-300">PHƯƠNG PHÁP</a>
             <a href="javascript:void(0)" onclick="showSection('milestones')" class="hover:text-pink-600 transition-colors duration-300">DẤU ẤN</a>
-            <a href="javascript:void(0)" onclick="showSection('contact')" class="hover:text-pink-600 transition-colors duration-300">LIÊN HỆ</a>
+            <a href="javascript:void(0)" onclick="showSection('contact')" class="hover:text-pink-600 transition-colors duration-300">HỢP TÁC</a>
         </nav>
 
         <button class="md:hidden text-gray-800 hover:text-pink-600 transition">
@@ -159,19 +255,22 @@
             <div class="absolute top-1/4 right-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-2000"></div>
             <div class="absolute -bottom-8 left-20 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-2xl opacity-40 animate-blob animation-delay-4000"></div>
 
-            <div class="relative z-10 glass-card shadow-2xl w-[320px] text-center transform md:translate-x-12 transition-transform duration-500 hover:scale-[1.01]">
-                <div class="bg-[#fcf6f5]/90 p-8 flex flex-col items-center">
-                    <div class="w-40 h-40 rounded-full overflow-hidden mb-6 border-4 border-white shadow-lg relative group">
+            <!-- Card được căn giữa -->
+            <div class="relative z-10 glass-card shadow-2xl w-[420px] text-center transition-transform duration-500 hover:scale-[1.01]">
+                <div class="bg-[#fcf6f5]/90 p-10 flex flex-col items-center">
+                    <div class="w-80 h-80 rounded-full overflow-hidden mb-8 border-4 border-white shadow-lg relative group">
                         <img src="https://duyhiep0612.wordpress.com/wp-content/uploads/2025/12/img_7857.jpg" alt="Nguyệt Macy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     </div>
-                    <h2 class="text-3xl font-bold font-serif text-gray-900 leading-tight">Nguyệt<br>Macy</h2>
-                    <div class="w-12 h-1 bg-blue-500 my-5"></div>
-                    <p class="text-xs tracking-[0.25em] uppercase text-gray-500 font-semibold">Professional Trainer</p>
+                    
+                    <h2 class="text-4xl font-bold font-serif text-gray-900 leading-tight">Nguyệt<br>Macy</h2>
+                    <div class="w-12 h-1 bg-blue-500 my-6"></div>
+                    
+                    <p class="text-sm tracking-[0.25em] uppercase text-gray-500 font-semibold font-sans">Transformation Trainer</p>
                 </div>
-                <div class="bg-white py-4 px-6 flex justify-center gap-6 border-t border-gray-100">
-                    <a href="#" class="text-gray-400 hover:text-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-pink-600 transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-blue-700 transition"><i class="fab fa-linkedin-in"></i></a>
+                <div class="bg-white py-5 px-6 flex justify-center gap-8 border-t border-gray-100">
+                    <a href="#" class="text-gray-400 hover:text-blue-600 transition"><i class="fab fa-facebook-f text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-pink-600 transition"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-700 transition"><i class="fab fa-linkedin-in text-lg"></i></a>
                 </div>
             </div>
         </section>
@@ -182,9 +281,12 @@
             <!-- 1. GIỚI THIỆU (About) -->
             <div id="about" class="animate-fade-in-up">
                 <h1 class="text-5xl md:text-7xl font-bold font-serif mb-4 text-gray-900 leading-none">Xin chào</h1>
-                <h3 class="text-lg md:text-xl font-medium mb-8 text-gray-600 flex items-center gap-2">Tôi là Macy, người làm đào tạo chuyển hoá <br class="hidden md:block">- từ nhận thức đến hành vi</h3>
                 
-                <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                <h3 class="text-lg md:text-xl font-medium mb-8 text-gray-600 flex items-center gap-2 font-sans">
+                    Tôi là Macy, người làm đào tạo chuyển hoá <br class="hidden md:block">- từ nhận thức đến hành vi
+                </h3>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mb-10 font-sans">
                     <button onclick="showSection('methodology')" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-xs tracking-widest shadow-lg shadow-blue-200 transition-all transform hover:-translate-y-0.5 hover:shadow-xl text-center">
                         CÁCH TÔI TẠO RA SỰ CHUYỂN HOÁ
                     </button>
@@ -193,138 +295,175 @@
                     </button>
                 </div>
 
-                <div class="space-y-6 text-gray-600 leading-relaxed text-sm md:text-base font-light text-justify">
+                <div class="space-y-6 text-gray-600 leading-relaxed text-sm md:text-base font-light text-justify font-sans">
                     <p class="font-medium text-gray-800">Chào mừng bạn đến với không gian của tôi.</p>
                     <p>Tôi là Macy, người theo đuổi con đường đào tạo chuyển hoá với niềm đam mê sâu sắc trong việc giải mã và khai mở tiềm năng con người.</p>
                     <p>Từ một người thực hành trở thành người chia sẻ, tôi đồng hành cùng cá nhân và doanh nghiệp trong hành trình phát triển năng lực nội tại.</p>
                     
                     <div class="pt-6 border-t border-gray-200 mt-6">
-                         <h4 class="font-bold text-gray-900 font-serif mb-4 uppercase tracking-wider text-sm">Nguyên tắc làm việc:</h4>
-                         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                             <li class="flex items-start gap-3"><div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-xs flex-shrink-0"><i class="fas fa-heart"></i></div><div><span class="font-bold text-gray-800">Tử tế</span><p class="text-xs text-gray-500">Tôn trọng, không phán xét</p></div></li>
-                             <li class="flex items-start gap-3"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs flex-shrink-0"><i class="fas fa-hands-holding"></i></div><div><span class="font-bold text-gray-800">Thấu cảm</span><p class="text-xs text-gray-500">Hiểu bối cảnh & cảm xúc</p></div></li>
-                             <li class="flex items-start gap-3"><div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 text-xs flex-shrink-0"><i class="fas fa-list-check"></i></div><div><span class="font-bold text-gray-800">Rõ ràng</span><p class="text-xs text-gray-500">Minh bạch, có hệ thống</p></div></li>
-                             <li class="flex items-start gap-3"><div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-xs flex-shrink-0"><i class="fas fa-lightbulb"></i></div><div><span class="font-bold text-gray-800">Đổi mới</span><p class="text-xs text-gray-500">Sáng tạo từ thực tiễn</p></div></li>
+                         <h4 class="font-bold text-gray-900 font-sans mb-6 uppercase tracking-wider text-sm">Giá trị cốt lõi:</h4>
+                         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm font-sans">
+                             <li class="flex items-start gap-3">
+                                 <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 text-xs flex-shrink-0"><i class="fas fa-heart"></i></div>
+                                 <div>
+                                     <span class="font-bold text-gray-800 block mb-1">Tử tế</span>
+                                     <p class="text-xs text-gray-500">Tôn trọng, không phán xét</p>
+                                 </div>
+                             </li>
+                             <li class="flex items-start gap-3">
+                                 <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-xs flex-shrink-0"><i class="fas fa-hands-holding"></i></div>
+                                 <div>
+                                     <span class="font-bold text-gray-800 block mb-1">Thấu cảm</span>
+                                     <p class="text-xs text-gray-500">Hiểu bối cảnh & cảm xúc</p>
+                                 </div>
+                             </li>
+                             <li class="flex items-start gap-3">
+                                 <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 text-xs flex-shrink-0"><i class="fas fa-list-check"></i></div>
+                                 <div>
+                                     <span class="font-bold text-gray-800 block mb-1">Rõ ràng</span>
+                                     <p class="text-xs text-gray-500">Minh bạch, có hệ thống</p>
+                                 </div>
+                             </li>
+                             <li class="flex items-start gap-3">
+                                 <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-xs flex-shrink-0"><i class="fas fa-lightbulb"></i></div>
+                                 <div>
+                                     <span class="font-bold text-gray-800 block mb-1">Đổi mới</span>
+                                     <p class="text-xs text-gray-500">Sáng tạo từ thực tiễn</p>
+                                 </div>
+                             </li>
                          </ul>
                     </div>
                 </div>
             </div>
 
             <!-- 2. TRIẾT LÝ ĐÀO TẠO (Philosophy) -->
-            <div id="philosophy" class="hidden animate-fade-in-up max-w-6xl mx-auto py-8">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-6xl font-bold font-serif mb-6 text-gray-900 leading-tight">
-                        Những triết lý đào tạo <br><span class="text-pink-600 italic font-serif">mà tôi theo đuổi</span>
-                    </h2>
-                    <div class="flex justify-center">
-                        <div class="w-24 h-1 bg-gray-800"></div>
+            <div id="philosophy" class="hidden max-w-6xl mx-auto py-8">
+                <!-- Header with Visual Anchor -->
+                <div class="flex flex-col-reverse md:flex-row items-center gap-8 mb-16 opacity-0 animate-fade-in-up">
+                    <div class="w-full md:w-3/5">
+                        <h2 class="text-4xl md:text-5xl font-bold font-serif mb-6 text-gray-900 leading-snug">
+                            Những triết lý đào tạo <br><span class="text-pink-600 italic font-serif">mà tôi theo đuổi</span>
+                        </h2>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-pink-400 relative">
+                            <i class="fas fa-quote-left absolute -top-3 -left-3 text-2xl text-pink-300 bg-[#fff0f3] rounded-full p-1"></i>
+                            <p class="text-lg font-serif italic text-gray-700 leading-relaxed">
+                                "Giáo dục không phải là đổ đầy một chiếc bình, mà là thắp lên một ngọn lửa."
+                            </p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/5">
+                        <div class="relative rounded-2xl overflow-hidden shadow-lg rotate-2 hover:rotate-0 transition duration-500">
+                            <img src="https://duyhiep0612.wordpress.com/wp-content/uploads/2025/12/2ba88f584f2fcb5c05892789416b6a79cd6440d54a49f653c5acee046fad47cd.png" alt="Philosophy" class="w-full h-64 md:h-80 object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 px-4">
-                    <!-- Philosophy 1 -->
-                    <div class="relative group">
-                         <div class="absolute -top-12 -left-8 text-8xl font-serif font-bold text-gray-100 -z-10 group-hover:text-blue-50 transition duration-500 select-none">01</div>
-                         <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-sync-alt"></i></span>
-                            Đào tạo là chuyển hoá
-                         </h3>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify border-l-2 border-blue-200 pl-4">
-                            Tôi tin rằng đào tạo chỉ thực sự có ý nghĩa khi tạo ra sự chuyển hoá từ bên trong con người. Trước khi học thêm điều mới, người học cần nhìn lại cách mình đang nghĩ, đang tin và đang hành động. Khi nhận thức thay đổi, hành vi sẽ thay đổi theo một cách tự nhiên và bền vững — không cần ép buộc.
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 px-2 font-sans">
+                    <div class="relative pl-12 opacity-0 animate-fade-in-up delay-100">
+                         <div class="absolute top-0 left-0 text-6xl font-serif font-bold text-gray-100 -z-10">01</div>
+                         <div class="absolute top-2 left-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"><i class="fas fa-sync-alt text-sm"></i></div>
+                         <h3 class="text-xl font-bold text-gray-900 mb-3 font-serif mt-2">Đào tạo là chuyển hoá</h3>
+                         <p class="text-gray-600 text-sm leading-relaxed text-justify">
+                            Tôi tin rằng đào tạo chỉ thực sự có ý nghĩa khi tạo ra sự chuyển hoá từ bên trong. Trước khi học điều mới, người học cần nhìn lại cách mình đang nghĩ, đang tin và đang hành động.
                          </p>
                     </div>
 
-                    <!-- Philosophy 2 -->
-                    <div class="relative group">
-                         <div class="absolute -top-12 -left-8 text-8xl font-serif font-bold text-gray-100 -z-10 group-hover:text-pink-50 transition duration-500 select-none">02</div>
-                         <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-user-circle"></i></span>
-                            Con người toàn diện là trung tâm
-                         </h3>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify border-l-2 border-pink-200 pl-4">
-                            Tôi tiếp cận đào tạo từ sự tôn trọng con người ở nhiều chiều cạnh — nhận thức, cảm xúc, bối cảnh sống và năng lực hiện tại. Mỗi chương trình được thiết kế xoay quanh mục tiêu giúp người học giải quyết những vấn đề thực sự họ đang đối mặt, và học viên là trung tâm của toàn bộ trải nghiệm học tập.
+                    <div class="relative pl-12 opacity-0 animate-fade-in-up delay-200">
+                         <div class="absolute top-0 left-0 text-6xl font-serif font-bold text-gray-100 -z-10">02</div>
+                         <div class="absolute top-2 left-0 w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-600"><i class="fas fa-user-circle text-sm"></i></div>
+                         <h3 class="text-xl font-bold text-gray-900 mb-3 font-serif mt-2">Con người toàn diện là trung tâm</h3>
+                         <p class="text-gray-600 text-sm leading-relaxed text-justify">
+                            Tiếp cận từ sự tôn trọng con người ở nhiều chiều cạnh — nhận thức, cảm xúc, bối cảnh sống. Mỗi chương trình xoay quanh việc giải quyết vấn đề thực sự họ đang đối mặt.
                          </p>
                     </div>
 
-                    <!-- Philosophy 3 -->
-                    <div class="relative group">
-                         <div class="absolute -top-12 -left-8 text-8xl font-serif font-bold text-gray-100 -z-10 group-hover:text-purple-50 transition duration-500 select-none">03</div>
-                         <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-chart-line"></i></span>
-                            Đào tạo trên khung năng lực
-                         </h3>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify border-l-2 border-purple-200 pl-4">
-                            Mỗi chương trình đào tạo được tôi xây dựng dựa trên năng lực của người học, nhằm tạo ra một lộ trình học tập vừa sức và có định hướng rõ ràng. Từ nền tảng đó, quá trình đồng hành được cá nhân hoá cho từng học viên, để họ được phát triển theo đúng nhu cầu, mục tiêu và nhịp độ của riêng mình.
+                    <div class="relative pl-12 opacity-0 animate-fade-in-up delay-300">
+                         <div class="absolute top-0 left-0 text-6xl font-serif font-bold text-gray-100 -z-10">03</div>
+                         <div class="absolute top-2 left-0 w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600"><i class="fas fa-chart-line text-sm"></i></div>
+                         <h3 class="text-xl font-bold text-gray-900 mb-3 font-serif mt-2">Đào tạo trên khung năng lực</h3>
+                         <p class="text-gray-600 text-sm leading-relaxed text-justify">
+                            Xây dựng dựa trên năng lực người học để tạo lộ trình vừa sức. Quá trình đồng hành được cá nhân hoá để học viên phát triển theo đúng nhu cầu và nhịp độ riêng.
                          </p>
                     </div>
 
-                    <!-- Philosophy 4 -->
-                    <div class="relative group">
-                         <div class="absolute -top-12 -left-8 text-8xl font-serif font-bold text-gray-100 -z-10 group-hover:text-yellow-50 transition duration-500 select-none">04</div>
-                         <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-                            <span class="w-8 h-8 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fas fa-seedling"></i></span>
-                            Ứng dụng thực tiễn
-                         </h3>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify border-l-2 border-yellow-200 pl-4">
-                            Mọi nội dung đào tạo tôi thiết kế đều hướng tới khả năng áp dụng vào đời sống và công việc thật. Kiến thức được đơn giản hoá, hệ thống hoá và gắn với những tình huống quen thuộc, để người học có thể sử dụng ngay. Mục tiêu không chỉ là kết quả ngắn hạn, mà là những thay đổi có ý nghĩa và duy trì được theo thời gian.
+                    <div class="relative pl-12 opacity-0 animate-fade-in-up delay-400">
+                         <div class="absolute top-0 left-0 text-6xl font-serif font-bold text-gray-100 -z-10">04</div>
+                         <div class="absolute top-2 left-0 w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600"><i class="fas fa-seedling text-sm"></i></div>
+                         <h3 class="text-xl font-bold text-gray-900 mb-3 font-serif mt-2">Ứng dụng thực tiễn</h3>
+                         <p class="text-gray-600 text-sm leading-relaxed text-justify">
+                            Hướng tới khả năng áp dụng vào đời sống và công việc thật. Kiến thức được đơn giản hoá, hệ thống hoá để tạo ra những thay đổi có ý nghĩa và duy trì bền vững.
                          </p>
                     </div>
                 </div>
             </div>
 
             <!-- 3. CÁCH TÔI TẠO RA SỰ CHUYỂN HOÁ (Methodology) -->
-            <div id="methodology" class="hidden animate-fade-in-up max-w-6xl mx-auto py-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-6xl font-bold font-serif mb-8 text-gray-900 leading-tight">
+            <div id="methodology" class="hidden max-w-6xl mx-auto py-4">
+                <div class="text-center mb-12 opacity-0 animate-fade-in-up">
+                    <h2 class="text-4xl md:text-6xl font-bold font-serif mb-4 text-gray-900 leading-snug">
                         Cách tôi tạo ra <br><span class="text-blue-600">Sự chuyển hoá</span>
                     </h2>
-                    
-                    <div class="relative inline-block max-w-3xl mx-auto px-6">
-                         <i class="fas fa-quote-left absolute -top-4 -left-2 md:-top-6 md:-left-8 text-3xl md:text-4xl text-pink-300 opacity-40"></i>
-                         <p class="text-lg md:text-2xl font-serif font-medium text-gray-700 leading-relaxed italic relative z-10">
-                            "Đào tạo chuyển hoá, với tôi, không bắt đầu từ kiến thức. <br class="hidden md:block">Nó bắt đầu từ khoảnh khắc một người dám nhìn lại chính mình."
-                         </p>
-                         <i class="fas fa-quote-right absolute -bottom-4 -right-2 md:-bottom-6 md:-right-8 text-3xl md:text-4xl text-pink-300 opacity-40"></i>
-                    </div>
-                    
-                    <p class="mt-8 text-gray-600 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-                        Tôi thiết kế các trải nghiệm học tập giúp người học thay đổi từ nhận thức, giải phóng rào cản bên trong, và từng bước chuyển hoá hành vi trong công việc và đời sống.
+                    <p class="text-gray-600 max-w-2xl mx-auto text-sm font-sans italic">
+                        "Không bắt đầu từ kiến thức, mà bắt đầu từ khoảnh khắc một người dám nhìn lại chính mình."
                     </p>
                 </div>
             
-                <!-- 4 Core Principles Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                <div class="flex flex-col gap-12 font-sans">
                     <!-- Item 1 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 group">
-                         <div class="flex items-center gap-4 mb-4">
-                             <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl group-hover:bg-blue-600 group-hover:text-white transition duration-300"><i class="fas fa-brain"></i></div>
-                             <h3 class="text-xl font-bold text-gray-900">Chuyển hoá tư duy trước</h3>
-                         </div>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify">Trong mỗi chương trình đào tạo, tôi bắt đầu không phải bằng kiến thức, mà bằng nhận thức và tư duy của người học. Làm rõ nguyên nhân gốc rễ, gọi tên những nỗi sợ và tháo gỡ các rào cản vô hình đang âm thầm cản bước người học.</p>
+                    <div class="flex flex-col md:flex-row items-center gap-8 group opacity-0 animate-fade-in-up delay-100">
+                        <div class="w-full md:w-1/2 order-2 md:order-1 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-brain"></i></div>
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Chuyển hoá tư duy trước</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed text-justify">Trong mỗi chương trình đào tạo, tôi bắt đầu không phải bằng kiến thức, mà bằng nhận thức và tư duy của người học. Làm rõ nguyên nhân gốc rễ, gọi tên những nỗi sợ và tháo gỡ các rào cản vô hình.</p>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2">
+                            <img src="https://duyhiep0612.wordpress.com/wp-content/uploads/2025/07/website-hosting-concept-with-bright-light.jpg" alt="Mindset" class="w-full h-48 md:h-56 object-cover rounded-2xl shadow-md group-hover:scale-105 transition duration-500">
+                        </div>
                     </div>
+
                     <!-- Item 2 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 group">
-                         <div class="flex items-center gap-4 mb-4">
-                             <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center text-xl group-hover:bg-pink-600 group-hover:text-white transition duration-300"><i class="fas fa-feather-alt"></i></div>
-                             <h3 class="text-xl font-bold text-gray-900">Đơn giản hoá tối đa</h3>
-                         </div>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify">Đơn giản hoá kiến thức đến mức dễ hiểu nhất. Để người học không bị “ngợp”, có thể hiểu nhanh, nhớ lâu và cảm thấy việc học trở nên nhẹ nhàng hơn, tạo động lực tự học.</p>
+                    <div class="flex flex-col md:flex-row items-center gap-8 group opacity-0 animate-fade-in-up delay-300">
+                        <div class="w-full md:w-1/2 order-1">
+                            <img src="https://images.unsplash.com/photo-1494178270175-e96de2971df9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Simple" class="w-full h-48 md:h-56 object-cover rounded-2xl shadow-md group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="w-full md:w-1/2 order-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-feather-alt"></i></div>
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Đơn giản hoá tối đa</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed text-justify">Đơn giản hoá kiến thức đến mức dễ hiểu nhất. Để người học không bị “ngợp”, có thể hiểu nhanh, nhớ lâu và cảm thấy việc học trở nên nhẹ nhàng hơn, tạo động lực tự học.</p>
+                        </div>
                     </div>
+
                     <!-- Item 3 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 group">
-                         <div class="flex items-center gap-4 mb-4">
-                             <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-xl group-hover:bg-purple-600 group-hover:text-white transition duration-300"><i class="fas fa-layer-group"></i></div>
-                             <h3 class="text-xl font-bold text-gray-900">Hệ thống hoá phương pháp</h3>
-                         </div>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify">Hệ thống hoá nội dung thành phương pháp rõ ràng. Giúp người học biết mình đang ở đâu, cần bắt đầu từ đâu và từng bước đi như thế nào, tạo nên lộ trình phát triển bền vững.</p>
+                    <div class="flex flex-col md:flex-row items-center gap-8 group opacity-0 animate-fade-in-up delay-500">
+                        <div class="w-full md:w-1/2 order-2 md:order-1 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-layer-group"></i></div>
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Hệ thống hoá phương pháp</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed text-justify">Hệ thống hoá nội dung thành phương pháp rõ ràng. Giúp người học biết mình đang ở đâu, cần bắt đầu từ đâu và từng bước đi như thế nào, tạo nên lộ trình phát triển bền vững.</p>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2">
+                            <img src="https://images.unsplash.com/photo-1512758017271-d7b84c2113f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="System" class="w-full h-48 md:h-56 object-cover rounded-2xl shadow-md group-hover:scale-105 transition duration-500">
+                        </div>
                     </div>
+
                     <!-- Item 4 -->
-                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition duration-300 group">
-                         <div class="flex items-center gap-4 mb-4">
-                             <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-xl group-hover:bg-yellow-600 group-hover:text-white transition duration-300"><i class="fas fa-briefcase"></i></div>
-                             <h3 class="text-xl font-bold text-gray-900">Ứng dụng thực tiễn</h3>
-                         </div>
-                         <p class="text-gray-600 text-sm leading-relaxed text-justify">Sử dụng ví dụ gần gũi, áp dụng được ngay. Gắn với đời sống, công việc và chính bối cảnh mà người học đang trải qua để kiến thức trở thành kỹ năng thực tế.</p>
+                    <div class="flex flex-col md:flex-row items-center gap-8 group opacity-0 animate-fade-in-up delay-700">
+                        <div class="w-full md:w-1/2 order-1">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Practical" class="w-full h-48 md:h-56 object-cover rounded-2xl shadow-md group-hover:scale-105 transition duration-500">
+                        </div>
+                        <div class="w-full md:w-1/2 order-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition duration-300">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-lg"><i class="fas fa-briefcase"></i></div>
+                                <h3 class="text-xl font-bold text-gray-900 font-serif">Ứng dụng thực tiễn</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed text-justify">Sử dụng ví dụ gần gũi, áp dụng được ngay. Gắn với đời sống, công việc và chính bối cảnh mà người học đang trải qua để kiến thức trở thành kỹ năng thực tế.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -332,7 +471,7 @@
             <!-- 4. DẤU ẤN NỔI BẬT (Milestones) -->
             <div id="milestones" class="hidden animate-fade-in-up max-w-6xl mx-auto py-4">
                 
-                <h2 class="text-5xl md:text-7xl font-bold font-serif mb-12 text-gray-900 leading-none tracking-tight">Dấu ấn <br><span class="text-pink-600 italic font-serif">Nổi bật</span></h2>
+                <h2 class="text-5xl md:text-7xl font-bold font-serif mb-8 text-gray-900 leading-snug tracking-tight">Dấu ấn <br><span class="text-pink-600 italic font-serif">Nổi bật</span></h2>
                 
                 <div class="space-y-16">
                     
@@ -340,13 +479,13 @@
                     <div>
                         <div class="flex items-center gap-4 mb-8">
                             <span class="text-4xl text-blue-200 font-serif font-bold">01</span>
-                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest">Các khoá học đã xây dựng</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest font-serif">Các khoá học đã xây dựng</h3>
                             <div class="h-px bg-gray-200 flex-grow"></div>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
                             <!-- Course 1 -->
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default">
+                            <div onclick="openMilestoneModal('course-1')" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
                                 <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
                                     <i class="fas fa-key"></i>
                                 </div>
@@ -355,7 +494,7 @@
                             </div>
 
                             <!-- Course 2 -->
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default">
+                            <div onclick="openMilestoneModal('course-2')" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
                                 <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
                                     <i class="fas fa-project-diagram"></i>
                                 </div>
@@ -364,7 +503,7 @@
                             </div>
 
                             <!-- Course 3 -->
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default">
+                            <div onclick="openMilestoneModal('course-3')" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
                                 <div class="w-12 h-12 bg-green-50 text-green-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition">
                                     <i class="fas fa-compass"></i>
                                 </div>
@@ -373,7 +512,7 @@
                             </div>
 
                             <!-- Course 4 -->
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default">
+                            <div onclick="openMilestoneModal('course-4')" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
                                 <div class="w-12 h-12 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-600 group-hover:text-white transition">
                                     <i class="fas fa-hands-helping"></i>
                                 </div>
@@ -382,7 +521,7 @@
                             </div>
 
                             <!-- Course 5 -->
-                            <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-default">
+                            <div onclick="openMilestoneModal('course-5')" class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer">
                                 <div class="w-12 h-12 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-yellow-600 group-hover:text-white transition">
                                     <i class="fas fa-comments"></i>
                                 </div>
@@ -396,13 +535,13 @@
                     <div>
                         <div class="flex items-center gap-4 mb-8">
                             <span class="text-4xl text-gray-200 font-serif font-bold">02</span>
-                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest">Chương trình đào tạo đã tổ chức</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest font-serif">Chương trình đào tạo đã tổ chức</h3>
                             <div class="h-px bg-gray-200 flex-grow"></div>
                         </div>
 
-                        <div class="flex flex-col gap-4">
+                        <div class="flex flex-col gap-4 font-sans">
                             <!-- Program 1 -->
-                            <div class="flex items-center p-4 bg-white rounded-lg border-l-4 border-blue-600 shadow-sm hover:shadow-md transition">
+                            <div onclick="openMilestoneModal('prog-1')" class="flex items-center p-4 bg-white rounded-lg border-l-4 border-blue-600 shadow-sm hover:shadow-md transition cursor-pointer">
                                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
                                     <i class="fas fa-chalkboard-teacher"></i>
                                 </div>
@@ -413,7 +552,7 @@
                             </div>
 
                             <!-- Program 2 -->
-                            <div class="flex items-center p-4 bg-white rounded-lg border-l-4 border-pink-600 shadow-sm hover:shadow-md transition">
+                            <div onclick="openMilestoneModal('prog-2')" class="flex items-center p-4 bg-white rounded-lg border-l-4 border-pink-600 shadow-sm hover:shadow-md transition cursor-pointer">
                                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 mr-4">
                                     <i class="fas fa-university"></i>
                                 </div>
@@ -424,7 +563,7 @@
                             </div>
 
                             <!-- Program 3 -->
-                            <div class="flex items-center p-4 bg-white rounded-lg border-l-4 border-purple-600 shadow-sm hover:shadow-md transition">
+                            <div onclick="openMilestoneModal('prog-3')" class="flex items-center p-4 bg-white rounded-lg border-l-4 border-purple-600 shadow-sm hover:shadow-md transition cursor-pointer">
                                 <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mr-4">
                                     <i class="fas fa-bullseye"></i>
                                 </div>
@@ -443,26 +582,26 @@
                         <div>
                             <div class="flex items-center gap-4 mb-8">
                                 <span class="text-4xl text-gray-200 font-serif font-bold">03</span>
-                                <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest">Ebook</h3>
+                                <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest font-serif">Ebook</h3>
                             </div>
                             
-                            <div class="space-y-4">
-                                <div class="group relative bg-white p-6 rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                            <div class="space-y-4 font-sans">
+                                <div onclick="openMilestoneModal('ebook-1')" class="group relative bg-white p-6 rounded-lg border border-gray-200 shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition">
                                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
                                         <i class="fas fa-book-open text-6xl"></i>
                                     </div>
                                     <h4 class="font-bold text-lg text-gray-900">Từ đào tạo đến thay đổi hành vi</h4>
                                     <p class="text-sm text-gray-500 mt-2">Cẩm nang dành cho người làm L&D</p>
-                                    <a href="#" class="inline-block mt-4 text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">Xem thêm <i class="fas fa-arrow-right ml-1"></i></a>
+                                    <span class="inline-block mt-4 text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">Xem thêm <i class="fas fa-arrow-right ml-1"></i></span>
                                 </div>
                                 
-                                <div class="group relative bg-white p-6 rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                                <div onclick="openMilestoneModal('ebook-2')" class="group relative bg-white p-6 rounded-lg border border-gray-200 shadow-sm overflow-hidden cursor-pointer hover:shadow-md transition">
                                     <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
                                         <i class="fas fa-coffee text-6xl"></i>
                                     </div>
                                     <h4 class="font-bold text-lg text-gray-900">Tối ưu đào tạo cho ngành F&B</h4>
                                     <p class="text-sm text-gray-500 mt-2">Giải pháp đặc thù cho ngành dịch vụ</p>
-                                    <a href="#" class="inline-block mt-4 text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">Xem thêm <i class="fas fa-arrow-right ml-1"></i></a>
+                                    <span class="inline-block mt-4 text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">Xem thêm <i class="fas fa-arrow-right ml-1"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -471,20 +610,20 @@
                         <div>
                             <div class="flex items-center gap-4 mb-8">
                                 <span class="text-4xl text-gray-200 font-serif font-bold">04</span>
-                                <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest">Đối tác đồng hành</h3>
+                                <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest font-serif">Đối tác đồng hành</h3>
                             </div>
                             
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group">
+                                <div onclick="openMilestoneModal('part-1')" class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group cursor-pointer">
                                     <span class="text-xl font-bold text-gray-400 group-hover:text-blue-600 transition">EVN</span>
                                 </div>
-                                <div class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group">
+                                <div onclick="openMilestoneModal('part-2')" class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group cursor-pointer">
                                     <span class="text-xl font-bold text-gray-400 group-hover:text-blue-500 transition">PG Bank</span>
                                 </div>
-                                <div class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group">
+                                <div onclick="openMilestoneModal('part-3')" class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group cursor-pointer">
                                     <span class="text-xl font-bold text-gray-400 group-hover:text-green-600 transition">TCG Land</span>
                                 </div>
-                                <div class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group">
+                                <div onclick="openMilestoneModal('part-4')" class="h-24 bg-white rounded-lg flex items-center justify-center shadow-sm border border-gray-100 hover:border-gray-300 transition group cursor-pointer">
                                     <span class="text-xl font-bold text-gray-400 group-hover:text-red-500 transition">Bellsystem24</span>
                                 </div>
                             </div>
@@ -494,31 +633,33 @@
                 </div>
             </div>
 
-            <!-- 5. LIÊN HỆ (Contact) -->
+            <!-- 5. HỢP TÁC (Trước là Liên Hệ) -->
             <div id="contact" class="hidden animate-fade-in-up max-w-6xl mx-auto py-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-6xl font-bold font-serif mb-4 text-gray-900 leading-tight">
-                        Liên hệ <br><span class="text-pink-600 italic font-serif">& Hợp tác</span>
+                <!-- Giảm margin-bottom xuống mb-8 -->
+                <div class="text-center mb-8">
+                    <!-- leading-snug -->
+                    <h2 class="text-4xl md:text-6xl font-bold font-serif mb-4 text-gray-900 leading-snug">
+                        Hợp tác <br><span class="text-pink-600 italic font-serif">& Kết nối</span>
                     </h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Hãy để lại thông tin nếu bạn quan tâm đến việc hợp tác đào tạo hoặc cần tư vấn.</p>
+                    <p class="text-gray-600 max-w-2xl mx-auto font-sans">Hãy để lại thông tin nếu bạn quan tâm đến việc hợp tác đào tạo hoặc cần tư vấn.</p>
                 </div>
 
-                <div class="flex flex-col md:flex-row gap-12">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
                     
                     <!-- Cột Trái: Dịch vụ (60%) -->
                     <div class="w-full md:w-3/5">
                         <div class="flex items-center gap-4 mb-8">
-                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest">Những điều tôi có thể đồng hành</h3>
+                            <h3 class="text-2xl font-bold text-gray-900 uppercase tracking-widest font-serif">Những điều tôi có thể đồng hành</h3>
                             <div class="h-px bg-gray-200 flex-grow"></div>
                         </div>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 font-sans">
                             <!-- Service 1 -->
                             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-200 transition group">
                                 <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition">
                                     <i class="fas fa-laptop-code"></i>
                                 </div>
-                                <h4 class="font-bold text-gray-900 mb-2">Số hoá khoá học</h4>
+                                <h4 class="font-bold text-gray-900 mb-2 font-serif">Số hoá khoá học</h4>
                                 <p class="text-sm text-gray-500 text-justify">Chuyển nội dung đào tạo offline thành e-learning, học linh hoạt nhưng có chiều sâu.</p>
                             </div>
 
@@ -527,7 +668,7 @@
                                 <div class="w-10 h-10 bg-pink-50 text-pink-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-pink-600 group-hover:text-white transition">
                                     <i class="fas fa-cogs"></i>
                                 </div>
-                                <h4 class="font-bold text-gray-900 mb-2">Tối ưu hệ thống đào tạo</h4>
+                                <h4 class="font-bold text-gray-900 mb-2 font-serif">Tối ưu hệ thống đào tạo</h4>
                                 <p class="text-sm text-gray-500 text-justify">Tối ưu nội dung và lộ trình học tập, tập trung vào năng lực cốt lõi để tạo tác động thật.</p>
                             </div>
 
@@ -536,7 +677,7 @@
                                 <div class="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
                                     <i class="fas fa-magic"></i>
                                 </div>
-                                <h4 class="font-bold text-gray-900 mb-2">Thiết kế đào tạo chuyển hoá</h4>
+                                <h4 class="font-bold text-gray-900 mb-2 font-serif">Thiết kế đào tạo chuyển hoá</h4>
                                 <p class="text-sm text-gray-500 text-justify">Tư vấn, thiết kế chương trình đào tạo, workshop chuyên môn theo hướng đào tạo chuyển hoá hành vi.</p>
                             </div>
 
@@ -545,19 +686,24 @@
                                 <div class="w-10 h-10 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center mb-4 group-hover:bg-yellow-600 group-hover:text-white transition">
                                     <i class="fas fa-chalkboard-user"></i>
                                 </div>
-                                <h4 class="font-bold text-gray-900 mb-2">Giảng dạy kỹ năng</h4>
+                                <h4 class="font-bold text-gray-900 mb-2 font-serif">Giảng dạy kỹ năng</h4>
                                 <p class="text-sm text-gray-500 text-justify">Đào tạo định hướng nghề nghiệp, Kỹ năng làm chủ cảm xúc, giao tiếp hiệu quả, lắng nghe chủ động.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Cột Phải: Thông tin liên hệ (40%) -->
-                    <div class="w-full md:w-2/5">
-                        <div class="bg-gray-900 text-white p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                    <div class="w-full md:w-2/5 flex justify-center">
+                        <div class="bg-gray-900 text-white p-10 rounded-3xl shadow-2xl relative overflow-hidden w-full text-center font-sans">
                             <!-- Decorative Circle -->
                             <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full -mr-10 -mt-10"></div>
                             <div class="absolute bottom-0 left-0 w-24 h-24 bg-pink-500 opacity-10 rounded-full -ml-8 -mb-8"></div>
                             
+                            <!-- Avatar Ring -->
+                            <div class="w-24 h-24 rounded-full border-4 border-white/20 mx-auto mb-6 overflow-hidden relative z-10">
+                                 <img src="https://duyhiep0612.wordpress.com/wp-content/uploads/2025/12/img_7857.jpg" alt="Macy" class="object-cover w-full h-full">
+                            </div>
+
                             <h3 class="text-2xl font-bold font-serif mb-8 relative z-10">Thông tin liên hệ</h3>
                             
                             <div class="space-y-6 relative z-10">
@@ -576,10 +722,10 @@
                                     <p class="text-lg hover:text-pink-400 transition cursor-pointer">0333 988 184</p>
                                 </div>
 
-                                <div class="pt-6 mt-6 border-t border-gray-700 flex gap-4">
+                                <div class="pt-6 mt-6 border-t border-gray-700 flex justify-center gap-4">
                                     <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition text-white"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-600 transition text-white"><i class="fab fa-linkedin-in"></i></a>
-                                    <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 transition text-white"><i class="fas fa-envelope"></i></a>
+                                    <a href="mailto:Nguyetmacy09@gmail.com" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-green-600 transition text-white"><i class="fas fa-envelope"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -595,10 +741,16 @@
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden relative" onclick="event.stopPropagation()">
             <button class="absolute top-4 right-4 bg-white/80 hover:bg-white rounded-full w-8 h-8 flex items-center justify-center transition z-10" onclick="closeProjectModal()"><i class="fas fa-times"></i></button>
             <img id="modalImage" src="" class="w-full h-48 object-cover">
-            <div class="p-6">
+            <div class="p-8 max-h-[60vh] overflow-y-auto custom-scrollbar">
+                <div class="flex items-center gap-2 mb-2">
+                    <span id="modalCategory" class="text-xs font-bold text-blue-600 uppercase tracking-widest"></span>
+                    <div class="h-px bg-gray-200 flex-grow"></div>
+                </div>
                 <h3 id="modalTitle" class="text-2xl font-serif font-bold text-gray-900 mb-4"></h3>
-                <p class="text-gray-600 text-sm">Nội dung chi tiết...</p>
-                <div class="mt-4 flex justify-end"><button class="px-4 py-2 bg-gray-900 text-white text-xs rounded" onclick="closeProjectModal()">Đóng</button></div>
+                <p id="modalDesc" class="text-gray-600 text-sm font-sans leading-relaxed text-justify">Nội dung chi tiết...</p>
+                <div class="mt-6 flex justify-end pt-4 border-t border-gray-100">
+                    <button class="px-6 py-2 bg-gray-900 text-white text-xs rounded font-sans hover:bg-pink-600 transition" onclick="closeProjectModal()">Đóng</button>
+                </div>
             </div>
         </div>
     </div>
