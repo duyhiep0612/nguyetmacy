@@ -48,101 +48,6 @@
             }
         }
 
-        // --- DỮ LIỆU CHI TIẾT DẤU ẤN ---
-        const milestoneData = {
-            // Khoá học
-            'course-1': {
-                title: "6 Kỹ năng mở khoá sự nghiệp",
-                category: "Career Development",
-                image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Khóa học trang bị bộ 6 kỹ năng thiết yếu giúp nhân sự trẻ bứt phá trong môi trường công sở: Giao tiếp thấu cảm, Quản lý thời gian, Giải quyết vấn đề, Tư duy phản biện, Làm việc nhóm và Thích ứng linh hoạt. Nội dung được thiết kế dựa trên các tình huống thực tế, giúp học viên áp dụng ngay vào công việc hàng ngày."
-            },
-            'course-2': {
-                title: "Hệ thống hoá mọi kiến thức thành bài giảng",
-                category: "Instructional Design",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Dành cho các chuyên gia muốn trở thành giảng viên nội bộ. Khóa học hướng dẫn quy trình chuyển đổi kiến thức ngầm (tacit knowledge) thành tài liệu đào tạo bài bản, dễ hiểu. Học viên sẽ làm chủ các công cụ thiết kế bài giảng, cấu trúc nội dung logic và phương pháp truyền tải hấp dẫn."
-            },
-            'course-3': {
-                title: "Hướng nghiệp tự thân",
-                category: "Dành cho học sinh",
-                image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Chương trình giúp học sinh THPT thấu hiểu bản thân, khám phá sở trường và định hình con đường nghề nghiệp phù hợp. Không chỉ là trắc nghiệm tính cách, khóa học cung cấp tư duy định hướng dài hạn, giúp các em tự tin ra quyết định chọn ngành, chọn nghề."
-            },
-            'course-4': {
-                title: "Cha mẹ Mentor",
-                category: "Hướng nghiệp cùng con",
-                image: "https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Giúp phụ huynh trở thành người đồng hành sáng suốt thay vì áp đặt. Khóa học cung cấp kiến thức về thị trường lao động mới, tâm lý tuổi vị thành niên và kỹ năng coaching để cha mẹ có thể đối thoại và hỗ trợ con cái hiệu quả trong giai đoạn bước ngoặt."
-            },
-            'course-5': {
-                title: "Nghệ thuật giao tiếp",
-                category: "Dành cho tuổi teen",
-                image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Khóa học giúp các bạn trẻ tự tin thể hiện bản thân, kết nối với bạn bè và thầy cô. Tập trung vào việc xây dựng sự tự tin, kỹ năng lắng nghe, kiểm soát ngôn ngữ cơ thể và ứng xử văn minh trên mạng xã hội."
-            },
-            
-            // Chương trình đào tạo
-            'prog-1': {
-                title: "Train the Trainer",
-                category: "Đào tạo Giảng viên nội bộ",
-                image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Chương trình huấn luyện chuyên sâu giúp đội ngũ quản lý và chuyên gia nội bộ trở thành những người đào tạo truyền cảm hứng. Nội dung bao gồm kỹ năng đứng lớp, điều phối hoạt động, xử lý tình huống khó và đánh giá hiệu quả đào tạo."
-            },
-            'prog-2': {
-                title: "Xây dựng tổ chức học tập xuất sắc",
-                category: "Văn hóa doanh nghiệp",
-                image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Tư vấn và đồng hành cùng doanh nghiệp xây dựng văn hóa học tập chủ động (Learning Culture). Xây dựng khung năng lực, lộ trình thăng tiến gắn liền với đào tạo và các hoạt động khuyến khích chia sẻ tri thức trong tổ chức."
-            },
-            'prog-3': {
-                title: "Lập kế hoạch đào tạo theo mục tiêu kinh doanh",
-                category: "Chiến lược L&D",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Khoá học dành cho L&D Manager và HR. Hướng dẫn cách phân tích nhu cầu đào tạo (TNA) dựa trên mục tiêu chiến lược của công ty, xây dựng ngân sách, lựa chọn đối tác và đo lường ROI (Return on Investment) của hoạt động đào tạo."
-            },
-
-            // Ebook
-            'ebook-1': {
-                title: "Từ đào tạo đến thay đổi hành vi",
-                category: "Ebook - Cẩm nang L&D",
-                image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Cuốn Ebook đúc kết kinh nghiệm thực chiến về việc làm sao để kiến thức sau đào tạo không bị 'trả lại thầy cô'. Tập trung vào các phương pháp Follow-up, On-the-job training và xây dựng môi trường hỗ trợ ứng dụng."
-            },
-            'ebook-2': {
-                title: "Tối ưu đào tạo cho ngành F&B",
-                category: "Ebook - Giải pháp ngành",
-                image: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Giải pháp đào tạo đặc thù cho ngành dịch vụ ăn uống với đặc điểm nhân sự biến động cao. Ebook cung cấp các quy trình đào tạo tinh gọn, checklist công việc chuẩn và phương pháp đào tạo tại chỗ hiệu quả."
-            },
-
-            // Đối tác
-            'part-1': {
-                title: "Tập đoàn Điện lực Việt Nam (EVN)",
-                category: "Đối tác Doanh nghiệp",
-                image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Hợp tác triển khai chuỗi chương trình 'Văn hóa dịch vụ khách hàng' và 'Kỹ năng giao tiếp chuyên nghiệp' cho cán bộ nhân viên tại các đơn vị thành viên, góp phần nâng cao chất lượng phục vụ của ngành điện."
-            },
-            'part-2': {
-                title: "Ngân hàng PG Bank",
-                category: "Đối tác Tài chính",
-                image: "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Đồng hành trong dự án đào tạo kỹ năng bán hàng và chăm sóc khách hàng ưu tiên. Xây dựng bộ quy chuẩn giao tiếp và xử lý khiếu nại cho đội ngũ giao dịch viên toàn hệ thống."
-            },
-            'part-3': {
-                title: "TCG Land",
-                category: "Đối tác Bất động sản",
-                image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Tổ chức chương trình 'Leadership Mindset' cho đội ngũ quản lý cấp trung. Tập trung vào kỹ năng quản lý đội nhóm sales, tạo động lực và duy trì năng lượng tích cực trong môi trường áp lực cao."
-            },
-            'part-4': {
-                title: "Bellsystem24",
-                category: "Đối tác BPO/Contact Center",
-                image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
-                description: "Đào tạo kỹ năng 'Train the Trainer' cho đội ngũ QA/Trainer nội bộ. Chuẩn hóa quy trình đào tạo nhân viên tổng đài, giúp rút ngắn thời gian hội nhập và nâng cao chất lượng cuộc gọi."
-            }
-        };
-
         // Script xử lý chuyển tab và Layout
         function showSection(sectionId) {
             const sections = ['about', 'philosophy', 'methodology', 'milestones', 'contact'];
@@ -176,6 +81,18 @@
                     el.offsetHeight; 
                     el.style.animation = null; 
                 });
+            }
+        }
+
+        // --- XỬ LÝ MENU MOBILE ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
             }
         }
 
@@ -231,6 +148,7 @@
             <span class="text-xl font-bold font-serif tracking-wide text-gray-900">Nguyệt Macy <span class="hidden sm:inline font-light text-sm font-sans ml-2 text-gray-500 uppercase tracking-widest">/ Transformation Trainer</span></span>
         </div>
         
+        <!-- Desktop Menu -->
         <nav class="hidden md:flex gap-8 text-xs font-semibold tracking-[0.15em] text-gray-500 font-sans">
             <a href="javascript:void(0)" onclick="showSection('about')" class="hover:text-pink-600 transition-colors duration-300">GIỚI THIỆU</a>
             <a href="javascript:void(0)" onclick="showSection('philosophy')" class="hover:text-pink-600 transition-colors duration-300">TRIẾT LÝ ĐÀO TẠO</a>
@@ -239,9 +157,19 @@
             <a href="javascript:void(0)" onclick="showSection('contact')" class="hover:text-pink-600 transition-colors duration-300">HỢP TÁC</a>
         </nav>
 
-        <button class="md:hidden text-gray-800 hover:text-pink-600 transition">
+        <!-- Mobile Menu Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden text-gray-800 hover:text-pink-600 transition focus:outline-none">
             <i class="fas fa-bars text-2xl"></i>
         </button>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="absolute top-full left-0 w-full bg-[#fff0f3] border-b border-pink-100 shadow-lg hidden flex-col py-4 px-6 gap-4 md:hidden animate-fade-in-up">
+            <a href="javascript:void(0)" onclick="showSection('about'); toggleMobileMenu()" class="text-sm font-semibold tracking-widest text-gray-600 hover:text-pink-600 py-2 border-b border-pink-50">GIỚI THIỆU</a>
+            <a href="javascript:void(0)" onclick="showSection('philosophy'); toggleMobileMenu()" class="text-sm font-semibold tracking-widest text-gray-600 hover:text-pink-600 py-2 border-b border-pink-50">TRIẾT LÝ ĐÀO TẠO</a>
+            <a href="javascript:void(0)" onclick="showSection('methodology'); toggleMobileMenu()" class="text-sm font-semibold tracking-widest text-gray-600 hover:text-pink-600 py-2 border-b border-pink-50">PHƯƠNG PHÁP</a>
+            <a href="javascript:void(0)" onclick="showSection('milestones'); toggleMobileMenu()" class="text-sm font-semibold tracking-widest text-gray-600 hover:text-pink-600 py-2 border-b border-pink-50">DẤU ẤN</a>
+            <a href="javascript:void(0)" onclick="showSection('contact'); toggleMobileMenu()" class="text-sm font-semibold tracking-widest text-gray-600 hover:text-pink-600 py-2">HỢP TÁC</a>
+        </div>
     </header>
 
     <!-- Main Layout -->
